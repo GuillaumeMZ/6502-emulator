@@ -16,7 +16,7 @@
     |X|1|Used for memory addressing|
     |Y|1|Used for memory addressing|
     |PC|2|Program counter|
-    |SP|2|Stack pointer| 
+    |SP|1|Stack pointer| 
     |S|1|Status register|
 * 65536 bytes can be addressed in the memory.
 * The memory is divided into *pages*. The size of a page is 256 bytes. There are 256 pages.
