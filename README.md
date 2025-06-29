@@ -24,21 +24,21 @@
 * The stack is located in page $01, so it is 256 bytes long. It goes from address `$0100` to `$01FF`.
 * The stack is *descending* (meaning the bottom of the stack is at address `$01FF`) and is *empty* (meaning SP points to the first available cell).
 * Addressing modes:
-    |Name|Abbreviation|Assembler notation|
-    |---|---|---|
-    |Accumulator|Acc||
-    |Implied|Imp||
-    |Immediate|Imm|#|
-    |Absolute|Abs|a|
-    |Zeropage|Zp|zp|
-    |Relative|Rel|r|
-    |Absolute indirect|AbsInd|(a)|
-    |Absolute indexed with X|AbsIndX|a,x|
-    |Absolute indexed with Y|AbsIndY|a,y|
-    |Zeropage indexed with X|ZpIndX|zp,x|
-    |Zeropage indexed with Y|ZpIndY|zp,y|
-    |Zeropage indexed indirect X|ZpIndIndX|(zp,x)|
-    |Zeropage indexed indirect Y|ZpIndIndY|(zp),y|
+    |Name|Abbreviation|Assembler notation|Comment|
+    |---|---|---|---|
+    |Accumulator|Acc|||
+    |Implied|Imp|||
+    |Immediate|Imm|#||
+    |Absolute|Abs|a||
+    |Zeropage|Zp|zp||
+    |Relative|Rel|r|Offset from -128 to +127|
+    |Absolute indirect|AbsInd|(a)||
+    |Absolute indexed with X|AbsIndX|a,x||
+    |Absolute indexed with Y|AbsIndY|a,y||
+    |Zeropage indexed with X|ZpIndX|zp,x||
+    |Zeropage indexed with Y|ZpIndY|zp,y||
+    |Zeropage indexed indirect X|ZpIndIndX|(zp,x)||
+    |Zeropage indexed indirect Y|ZpIndIndY|(zp),y||
 
 ## Resources
 
