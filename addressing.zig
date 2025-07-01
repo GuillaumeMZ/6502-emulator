@@ -22,7 +22,7 @@ pub const AddressingError = error{
 
 pub fn effective_address(addressing_mode: AddressingMode, cpu: *const Cpu) AddressingError!u16 {
     switch (addressing_mode) {
-        .acc, .imp, .imm => return error.InvalidAddressingMode,
+        .acc, .imp, .imm => return AddressingError.InvalidAddressingMode,
         .abs => |address| return address,
         .zp => |zp_offset| return zp_offset,
         .rel => |offset| return @as(u16, @bitCast(@as(i16, @bitCast(cpu.pc)) + offset)), //gneh
@@ -48,4 +48,16 @@ pub fn effective_address(addressing_mode: AddressingMode, cpu: *const Cpu) Addre
             return address + cpu.y;
         },
     }
+}
+
+pub fn effective_value(addressing_mode: AddressingMode, cpu: *const Cpu) AddressingError!u8 {
+    //TODO: add support for acc and imp (maybe)
+    return switch (addressing_mode) {
+        .acc, .imp => return AddressingError.InvalidAddressingMode,
+        .imm => |immediate| return immediate,
+        else => {
+            const address = try effective_address(addressing_mode, cpu);
+            return cpu.ram[address];
+        },
+    };
 }
