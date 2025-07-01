@@ -25,7 +25,7 @@ pub fn effective_address(addressing_mode: AddressingMode, cpu: *const Cpu) Addre
         .acc, .imp, .imm => return error.InvalidAddressingMode,
         .abs => |address| return address,
         .zp => |zp_offset| return zp_offset,
-        .rel => |offset| return cpu.pc + @as(u16, @intCast(@as(i16, offset))), //i definitely have no idea if this is correct or not, but at least it compiles ;)
+        .rel => |offset| return @as(u16, @bitCast(@as(i16, @bitCast(cpu.pc)) + offset)), //gneh
         .abs_ind => |address| {
             const first_byte = cpu.ram[address];
             const second_byte = @as(u16, cpu.ram[address + 1]);

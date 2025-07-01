@@ -4,6 +4,15 @@ const Addressing = @import("./addressing.zig");
 const Cpu = @import("./cpu.zig");
 
 //test cases copied from https://en.wikibooks.org/wiki/6502_Assembly
+//except the first one
+test "relative addressing mode with a negative offset is calculated correctly" {
+    var cpu = Cpu{};
+    cpu.pc = 0x100;
+
+    const result_address = try Addressing.effective_address(Addressing.AddressingMode{ .rel = -0x10 }, &cpu);
+
+    try expect(result_address == 0xf0);
+}
 
 test "absolute indirect addressing mode address is calculated correctly" {
     var cpu = Cpu{};
