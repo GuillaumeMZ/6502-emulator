@@ -35,7 +35,7 @@ ram: *[Ram.RamSize]u8 = &Ram.Ram,
 
 pub const frequency: u32 = 1_000_000; //in hertz
 
-pub fn handle_adc(self: *Self, addressing_mode: AddressingMode) AddressingError!void {
+pub fn adc(self: *Self, addressing_mode: AddressingMode) AddressingError!void {
     switch (addressing_mode) {
         .acc,
         .imp,
@@ -46,7 +46,7 @@ pub fn handle_adc(self: *Self, addressing_mode: AddressingMode) AddressingError!
         else => {},
     }
 
-    const value_to_add = try Addressing.effective_value(addressing_mode, &self);
+    const value_to_add = try Addressing.effective_value(addressing_mode, self);
     const carry = self.status.c;
     const accumulator = self.accumulator;
 
@@ -59,6 +59,6 @@ pub fn handle_adc(self: *Self, addressing_mode: AddressingMode) AddressingError!
     self.status.c = overflow;
 }
 
-pub fn handle_clc(self: *Self) void {
+pub fn clc(self: *Self) void {
     self.status.c = 0;
 }
