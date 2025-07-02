@@ -58,3 +58,7 @@ pub fn handle_adc(self: *Self, addressing_mode: AddressingMode) AddressingError!
     self.status.z = if (result == 0) 1 else 0;
     self.status.c = overflow;
 }
+
+pub fn handle_clc(self: *Self) void {
+    self.status.c = 0;
+}
